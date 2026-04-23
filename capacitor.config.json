@@ -1,5 +1,5 @@
 {
-  "appId": "com.glp1tracker.app",
+  "appId": "com.mmglp1tracker.app",
   "appName": "GLP-1 Tracker",
   "webDir": "dist",
   "server": {
