@@ -1301,6 +1301,9 @@ export default function App() {
       ) : null}
 
       <style>{`
+        :root {
+          --app-edge-padding: clamp(10px, 2vw, 18px);
+        }
         html, body, #root {
           margin:0;
           min-height:100%;
@@ -1314,9 +1317,13 @@ export default function App() {
         }
         .app {
           min-height:100vh;
+          min-height:100dvh;
           width:100%;
           font-family:sans-serif;
-          padding:clamp(10px, 2vw, 18px);
+          padding-top:calc(env(safe-area-inset-top, 0px) + var(--app-edge-padding));
+          padding-right:var(--app-edge-padding);
+          padding-bottom:var(--app-edge-padding);
+          padding-left:var(--app-edge-padding);
         }
         .dark { background:#07111f; color:#f8fafc; }
         .shell {
@@ -1731,13 +1738,13 @@ export default function App() {
         .dark .heatmapRange { accent-color:#8b5cf6; }
 
         @media (max-width: 1100px) {
-          .app { padding:12px; }
+          .app { --app-edge-padding:12px; }
           .fullWidthCard { grid-column:auto; }
           .weeklyHeatmapGrid { grid-template-columns:repeat(7, minmax(0, 1fr)); }
           .sectionGrid { grid-template-columns:1fr; }
         }
         @media (max-width: 700px) {
-          .app { padding:10px; }
+          .app { --app-edge-padding:10px; }
           .contentCard { padding:12px; }
           .actionBar { flex-direction:column; }
           .topBar { align-items:center; }
