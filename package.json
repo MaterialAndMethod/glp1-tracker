@@ -1,0 +1,32 @@
+{
+  "name": "glp1-tracker",
+  "private": true,
+  "version": "0.1.0-beta.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cap:sync": "npm run build && npx cap sync ios",
+    "ios:add": "npx cap add ios",
+    "ios:open": "npx cap open ios",
+    "ios:run": "npm run cap:sync && npx cap run ios",
+    "ios:doctor-store": "node scripts/ios-app-store-preflight.mjs",
+    "ios:prep-store": "npm run cap:sync && npm run ios:doctor-store"
+  },
+  "dependencies": {
+    "@capacitor/cli": "^8.3.1",
+    "@capacitor/core": "^8.3.1",
+    "@capacitor/filesystem": "^8.1.2",
+    "@capacitor/ios": "^8.3.1",
+    "@capacitor/share": "^8.0.1",
+    "@capawesome/capacitor-file-picker": "^8.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.15.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}

@@ -1,0 +1,28 @@
+node_modules/
+dist/
+.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vite
+.vite/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Capacitor / native build artifacts
+ios/App/App/public/
+ios/App/build/
+ios/App/DerivedData/
+ios/App/.build/
+ios/App/Pods/
+ios/App/App.xcworkspace/xcuserdata/
+ios/App/App.xcodeproj/xcuserdata/
+
+# macOS / Xcode noise
+*.xcuserstate
