@@ -20,7 +20,7 @@ GLP-1 Tracker React app for daily tracking and weekly medication updates.
 - Web and native behavior should stay aligned unless platform-specific file handling requires a small difference
 
 ## Current defaults
-- Default medication: Wegovy
+- Default medication: Semaglutide
 - Default dosage: 0.25 mg
 - App starts in dark mode
 - Default shot location: Left thigh

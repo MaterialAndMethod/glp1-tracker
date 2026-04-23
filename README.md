@@ -5,6 +5,7 @@ Compact React + Capacitor tracker for daily GLP-1-related metrics and weekly med
 ## Current scope
 
 - Separate medication and daily metrics workflows
+- Generic medication naming in the UI (`Semaglutide`, `Tirzepatide`, `Custom`)
 - Weekly heatmap with quick date selection
 - Trend Explorer charts for medication level, weight, symptoms, and nutrition
 - Local persistence with `localStorage`

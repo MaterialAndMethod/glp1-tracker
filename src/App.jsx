@@ -15,10 +15,13 @@ import {
 } from "recharts";
 
 const DRUGS = {
-  Ozempic: 7,
-  Wegovy: 7,
+  Semaglutide: 7,
   Tirzepatide: 5,
   Custom: 5,
+};
+const LEGACY_DRUG_ALIASES = {
+  Ozempic: "Semaglutide",
+  Wegovy: "Semaglutide",
 };
 
 const STORAGE_KEY = "glp1Data";
@@ -76,7 +79,7 @@ const initialForm = {
   date: getTodayDateString(),
   weight: "",
   lastDose: "",
-  drug: "Wegovy",
+  drug: "Semaglutide",
   shotLocation: "Left thigh",
   dosage: "0.25",
   calories: "",
@@ -120,9 +123,15 @@ function movingAvg(data, key, window = 3) {
   });
 }
 
+function normalizeDrugName(drugName) {
+  if (!drugName) return initialForm.drug;
+  return LEGACY_DRUG_ALIASES[drugName] || drugName;
+}
+
 function getExperimentalHalfLife(entry) {
-  const baseHalfLife = DRUGS[entry?.drug] || DRUGS.Custom;
-  if (entry?.drug !== "Wegovy") return baseHalfLife;
+  const normalizedDrug = normalizeDrugName(entry?.drug);
+  const baseHalfLife = DRUGS[normalizedDrug] || DRUGS.Custom;
+  if (normalizedDrug !== "Semaglutide") return baseHalfLife;
 
   const weight = Number(entry?.weight || 0);
   if (!weight || Number.isNaN(weight)) return baseHalfLife;
@@ -254,9 +263,11 @@ async function downloadJsonFile(data) {
 }
 
 function normalizeLoadedData(raw) {
-  if (Array.isArray(raw)) return raw;
-  if (raw && Array.isArray(raw.entries)) return raw.entries;
-  return [];
+  const entries = Array.isArray(raw) ? raw : raw && Array.isArray(raw.entries) ? raw.entries : [];
+  return entries.map((entry) => ({
+    ...entry,
+    drug: normalizeDrugName(entry?.drug),
+  }));
 }
 
 function parseImportedEntries(rawText) {
