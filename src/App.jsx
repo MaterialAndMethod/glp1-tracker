@@ -1308,6 +1308,7 @@ export default function App() {
           margin:0;
           min-height:100%;
           width:100%;
+          overflow-x:hidden;
         }
         body {
           background:#07111f;
@@ -1353,7 +1354,6 @@ export default function App() {
         .pageTabs {
           display:flex;
           gap:8px;
-          overflow-x:auto;
           padding-bottom:2px;
         }
         .pageTab {
@@ -1365,6 +1365,7 @@ export default function App() {
           white-space:nowrap;
           cursor:pointer;
           font-weight:600;
+          min-width:0;
         }
         .pageTabActive {
           background:#8b5cf6;
@@ -1748,6 +1749,16 @@ export default function App() {
           .contentCard { padding:12px; }
           .actionBar { flex-direction:column; }
           .topBar { align-items:center; }
+          .pageTabs {
+            display:grid;
+            grid-template-columns:repeat(3, minmax(0, 1fr));
+          }
+          .pageTab {
+            white-space:normal;
+            min-height:44px;
+            padding:10px 12px;
+            line-height:1.2;
+          }
           .heatCell { min-height:36px; }
           .compactHeatCell { min-height:48px; font-size:0.72rem; }
           .chartHeader,
